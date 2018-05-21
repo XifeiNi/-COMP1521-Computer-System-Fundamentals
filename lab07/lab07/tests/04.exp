@@ -1,0 +1,170 @@
+
+@ t=0, read from pA=1000 (vA=1000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L,  0,  0 @ 0
+[ 1]  -, -1, -1
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1] -1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=1, write to pA=3000 (vA=3000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  -, -1, -1
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1] -1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=2, read from pA=5000 (vA=5000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  L,  2,  1 @ 4096
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=3, write to pA=7000 (vA=7000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  M,  3,  1 @ 4096
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=4, read from pA=9000 (vA=9000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  4,  2 @ 8192
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=5, read from pA=9000 (vA=9000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  5,  2 @ 8192
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=6, read from pA=10000 (vA=10000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  6,  2 @ 8192
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=7, read from pA=12000 (vA=12000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  M,  1,  0 @ 0
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  7,  2 @ 8192
+[ 3]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=8, read from pA=1712 (vA=14000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  -, -1, -1
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  7,  2 @ 8192
+[ 3]  L,  8,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=9, write to pA=3712 (vA=16000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  -, -1, -1
+[ 1]  M,  3,  1 @ 4096
+[ 2]  L,  7,  2 @ 8192
+[ 3]  M,  9,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=10, read from pA=5096 (vA=1000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L, 10,  1 @ 4096
+[ 1]  -, -1, -1
+[ 2]  L,  7,  2 @ 8192
+[ 3]  M,  9,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  0 @ 4096
+[ 2]  2 @ 8192
+
+@ t=11, read from pA=5097 (vA=1001)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L, 11,  1 @ 4096
+[ 1]  -, -1, -1
+[ 2]  L,  7,  2 @ 8192
+[ 3]  M,  9,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  0 @ 4096
+[ 2]  2 @ 8192
+
+@ t=12, read from pA=5098 (vA=1002)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L, 12,  1 @ 4096
+[ 1]  -, -1, -1
+[ 2]  L,  7,  2 @ 8192
+[ 3]  M,  9,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  0 @ 4096
+[ 2]  2 @ 8192
+
+@ t=13, write to pA=9096 (vA=5000)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L, 12,  1 @ 4096
+[ 1]  M, 13,  2 @ 8192
+[ 2]  -, -1, -1
+[ 3]  M,  9,  0 @ 0
+MemFrames
+[ 0]  3 @ 0
+[ 1]  0 @ 4096
+[ 2]  1 @ 8192
+
+#loads = 6, #saves = 2, #replacements = 3

@@ -1,0 +1,67 @@
+
+@ t=0, read from pA=0 (vA=0)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L,  0,  0 @ 0
+[ 1]  -, -1, -1
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+[ 4]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1] -1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=1, read from pA=4096 (vA=4096)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L,  0,  0 @ 0
+[ 1]  L,  1,  1 @ 4096
+[ 2]  -, -1, -1
+[ 3]  -, -1, -1
+[ 4]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2] -1 @ 8192
+
+@ t=2, read from pA=8192 (vA=8192)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  L,  0,  0 @ 0
+[ 1]  L,  1,  1 @ 4096
+[ 2]  L,  2,  2 @ 8192
+[ 3]  -, -1, -1
+[ 4]  -, -1, -1
+MemFrames
+[ 0]  0 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=3, read from pA=0 (vA=12288)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  -, -1, -1
+[ 1]  L,  1,  1 @ 4096
+[ 2]  L,  2,  2 @ 8192
+[ 3]  L,  3,  0 @ 0
+[ 4]  -, -1, -1
+MemFrames
+[ 0]  3 @ 0
+[ 1]  1 @ 4096
+[ 2]  2 @ 8192
+
+@ t=4, read from pA=4096 (vA=16384)
+
+PageTable (Stat,Acc,Frame)
+[ 0]  -, -1, -1
+[ 1]  -, -1, -1
+[ 2]  L,  2,  2 @ 8192
+[ 3]  L,  3,  0 @ 0
+[ 4]  L,  4,  1 @ 4096
+MemFrames
+[ 0]  3 @ 0
+[ 1]  4 @ 4096
+[ 2]  2 @ 8192
+
+Invalid address 20480
