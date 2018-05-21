@@ -3,8 +3,8 @@
 An outline of what will be in the repository
 
 
-1 computer systems, queues, stacks, memory, data representation	Welcome, Stacks, Queues, Bits	Input/output	
-2	Data representation (cont)	Data representation (i) 
+#1 computer systems, queues, stacks, memory, data representation	Welcome, Stacks, Queues, Bits	Input/output	
+#2	Data representation (cont)	Data representation (i) 
 Bit Manipulation
 3	Instruction set architecture, assembly language programming	Data representation (ii)	Data Representation (floats)	-	-
 4	Assembly language programming (cont), Compilation, mapping C to assembler	Assembly language 
