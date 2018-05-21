@@ -1,0 +1,107 @@
+# COMP1521 18s1 Week 05 Lab
+#
+# void multMatrices(int n, int m, int p,
+#                   int A[n][m], int B[m][p], int C[n][p])
+# {
+#    for (int r = 0; r < n; r++) {
+#       for (int c = 0; c < p; c++) {
+#          int sum = 0;
+#          for (int i = 0; i < m; i++) {
+#             sum += A[r][i] * B[i][c];
+#          }
+#          C[r][c] = sum;
+#       }
+#    }
+# }
+
+   .text
+   .globl multMatrices
+multMatrices:
+   # possible register usage:
+   # n is $s0, m is $s1, p is $s2,
+   # r is $s3, c is $s4, i is $s5, sum is $s6
+
+   # set up stack frame for multMatrices()
+#	sw   $a3, -4($sp)
+#	sw   $a4, -8($sp)
+#	sw   $a5, -12($sp)
+	sw   $fp, -4($sp)
+	la   $fp, -4($sp)
+	sw   $ra, -4($fp)
+	sw   $s0, -8($fp)
+	sw   $s1, -12($fp)
+	sw   $s2, -16($fp)
+	sw   $s3, -20($fp)
+	sw   $s4, -24($fp)
+	sw   $s5, -28($fp)
+	sw   $s6, -32($fp)
+	lw $t0, 8($sp)
+	lw $t8, 4($sp)
+	lw $t9, ($sp)
+	addi   $sp, $sp, -36
+   # implement above C code
+	# pass in the function argument
+	move $s0, $a0		# $s0 = n
+	move $s1, $a1		# $s1 = m
+	move $s2, $a2		# $s2 = p
+##  4($fp) == &C
+## 8($fp) == &B
+## 12($fp) == &A
+##  &a => la $t9, 12($fp)
+
+	li   $s3, 0             # r = 0
+rloop:
+	beq $s3, $s0, cend
+	li   $s4, 0             # c = 0
+cloop:
+	beq $s4, $s2, cnext
+	li   $s6, 0		# sum = 0 
+	li   $s5, 0             # i = 0
+iloop:
+	beq  $s1,$s5,inext	# if i = m, branch to inext
+
+	mul  $t3,$s3,4		# r * 4
+	mul  $t4,$s5,4		# i * 4
+	add  $t4,$t3,$t4	# r * 4 + i * 4
+	add  $t4,$t4,$t0	# $t4 now stores the address of A[r][i]
+	lw   $t5,0($t4)		# $t5 stores the value of $t4
+
+	mul  $t3,$s4,4		# c * 4
+	mul  $t4,$s5,4		# i * 4
+	add  $t4,$t3,$t4	# i * 4 + c * 4
+	add  $t4,$t8,$t4	# $t4 now stores the addree of b[i][c]
+	lw   $t6,0($t4)		# $t6 stores the value of $t4
+
+	mul  $t7,$t5,$t6	# $t7 =  A[r][i]* B[i][c]
+	add  $s6,$s6,$t7	# sum += A[r][i]* B[i][c]
+
+	addi $s5,$s5,1		# i++
+	j    iloop		# here continues iloop
+inext:	
+	mul  $t2,$s3,4		# r * 4
+	mul  $t3,$s4,4		# c * 4
+	add  $t2,$t2,$t3	# r * 4 + c * 4
+	add  $t2,$t2,$t9	# $t2 points to the address of c
+	sw   $s6,0($t2)		# c[r][c] = sum
+	addi $s4,$s4,1		# c++ : increment c
+	j    cloop		# here continues the c loop
+
+cnext:
+	addi $s3,$s3, 1		# r++ : increment r
+	j    rloop		# here continues loop abt r
+	
+	
+cend:	
+   # clean up stack and return
+	lw   $s6, -36($fp)
+	lw   $s5, -32($fp)
+	lw   $s4, -24($fp)
+	lw   $s3, -20($fp)
+	lw   $s2, -16($fp)
+	lw   $s1, -12($fp)
+	lw   $s0, -8($fp)
+	lw   $ra, -4($fp)
+	la   $sp, 4($fp)
+	lw   $fp, ($fp)
+	jr   $ra
+

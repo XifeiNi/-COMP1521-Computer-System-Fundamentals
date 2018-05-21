@@ -1,0 +1,8 @@
+a = malloc 100
+b = malloc 200
+c = malloc 300
+free b
+d = malloc 200
+free c
+free a
+free b
